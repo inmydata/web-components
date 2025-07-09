@@ -1,0 +1,76 @@
+import InmydataBase from '../inmydata-base.js';
+
+// Mock the CustomEvent constructor
+global.CustomEvent = jest.fn((type, options) => ({
+    type,
+    ...options
+}));
+
+// Mock HTMLElement
+class HTMLElement {
+    constructor() {
+        this.attributes = new Map();
+        this.shadowRoot = {
+            innerHTML: ''
+        };
+    }
+    attachShadow() {
+        return this.shadowRoot;
+    }
+    getAttribute(name) {
+        return this.attributes.get(name);
+    }
+    setAttribute(name, value) {
+        this.attributes.set(name, value);
+    }
+}
+global.HTMLElement = HTMLElement;
+
+describe('InmydataBase', () => {
+    let element, instance;
+
+    beforeEach(() => {
+        element = new InmydataBase();
+    });
+
+    describe('Common Attributes', () => {
+        element = new InmydataBase();
+        test('should get default common attributes', () => {
+            const attrs = element.getCommonAttributes();
+            expect(attrs).toEqual({
+                tenant: null,
+                cluster: null,
+                width: '100%',
+                height: '100%',
+                render: true
+            });
+        });
+
+        test('should get custom common attributes', () => {
+            element.setAttribute('tenant', 'test-tenant');
+            element.setAttribute('cluster', 'test');
+            const attrs = element.getCommonAttributes();
+            expect(attrs.tenant).toBe('test-tenant');
+            expect(attrs.cluster).toBe('test');
+        });
+    });
+
+    describe('URL Creation', () => {
+        test('should throw error when tenant is not provided', () => {
+            expect(() => element.createUrl('/test')).toThrow(TypeError);
+        });
+
+        test('should create correct URL for production environment', () => {
+            element.setAttribute('tenant', 'test-tenant');
+            const url = element.createUrl('/test');
+            expect(url.toString()).toBe('https://test-tenant.inmydata.com/test');
+        });
+
+        test('should create correct URL for test environment', () => {
+            element.setAttribute('tenant', 'test-tenant');
+            element.setAttribute('cluster', 'test');
+            const url = element.createUrl('/test');
+            expect(url.toString()).toBe('https://test-tenant.test-inmydata.com/test');
+        });
+    });
+});

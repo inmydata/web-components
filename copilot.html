@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test inmydata-copilot</title>
+
+    <script type="module" src="inmydata-copilot.js"></script>
+    <style>
+        html, body{
+            display:flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        inmydata-copilot{
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="tenant" placeholder="Enter tenant" value="test">
+    <input type="text" id="subject" placeholder="Enter subject">
+    <input type="text" id="question" placeholder="Enter question">
+
+    <inmydata-copilot id="copilot" tenant="test"></inmydata-copilot>
+
+    <script>
+        document.getElementById('tenant').addEventListener('change', function() {
+            document.getElementById('copilot').setAttribute('tenant', this.value);
+        });
+
+        document.getElementById('subject').addEventListener('change', function() {
+            document.getElementById('copilot').setAttribute('subject', this.value);
+        });
+
+        document.getElementById('question').addEventListener('change', function() {
+            document.getElementById('copilot').setAttribute('question', this.value);
+        });
+    </script>
+</body>
+</html>

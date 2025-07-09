@@ -1,6 +1,6 @@
 <p align="center"><img src="images/inmydata.webp" alt="inmydata logo"/></p>
 
-A suite of components, making it effortless to embed visualisations & dashboards, and provide AI conversational ability to your application.
+A suite of components, making it effortless to embed inmydata visualisations & dashboards, and provide AI conversational ability to your application.
 
 Our components are simple HTML elements, based on the universally supported [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) standard.  They are vanilla JavaScript with no dependencies, and can be used in any web page, with or without a framework.  Regardless of whether you use React, Angular, jQuery, any other framework, or no framework at all, you can easily embed elements of inmydata to your application. 
 

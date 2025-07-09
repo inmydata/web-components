@@ -19,4 +19,4 @@ To use our components in your web application, add one line to your html:
 Or you may wish to download the components from the `dist` folder here and self-host.
 
 ## Documentation
-Read the full docs at [developer.inmydata.com](https://developer.inmydata.com/support/solutions/articles/36000552414-getting-started-with-web-components)
+Read the full docs at the [inmydata Developers Portal](https://developer.inmydata.com/support/solutions/articles/36000552414-getting-started-with-web-components)

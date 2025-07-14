@@ -1,0 +1,23 @@
+{
+  "name": "inmydata-web-components",
+  "version": "1.0.0",
+  "description": "InMyData Web Components",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "jest": "^29.6.1",
+    "jest-environment-jsdom": "^29.6.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {},
+    "testMatch": ["**/tests/**/*.test.js"],
+    "moduleFileExtensions": ["js"],
+    "setupFilesAfterEnv": ["./tests/jest.setup.js"],
+    "testEnvironmentOptions": {
+      "customExportConditions": ["node", "node-addons"]
+    }
+  }
+}

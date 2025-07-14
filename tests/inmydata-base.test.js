@@ -1,3 +1,4 @@
+import { jest, expect, describe, test, beforeEach, afterEach } from '@jest/globals';
 import InmydataBase from '../inmydata-base.js';
 
 class InmydataBaseTest extends InmydataBase {  render() {} }
@@ -51,7 +52,8 @@ describe('InmydataBase', () => {
                 height: '100%',
                 render: true,
                 suppressDrilldown: false,
-                demo: false
+                demo: false,
+                showLogin: true
             });
         });
 

@@ -1,3 +1,4 @@
+import { jest, expect, describe, it, test, beforeEach, afterEach } from '@jest/globals';
 import InmydataVis from '../inmydata-vis.js';
 import { hasAnIFrame, correctIFrameSrc, callsFunction, hasCommonObservedAttributes } from './commonTests.js';
 

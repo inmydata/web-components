@@ -1,3 +1,4 @@
+import { jest, expect } from '@jest/globals';
 import InmydataBase from '../inmydata-base.js';
 
 export function hasAnIFrame(element) { 

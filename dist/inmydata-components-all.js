@@ -468,7 +468,7 @@
 
 
         static get observedAttributes() {
-            return this.getCommonObservedAttributes().concat(['read-only', 'show-toolbar', 'show-tools', 'show-tool-toggle']);
+            return this.getCommonObservedAttributes().concat(['read-only', 'show-toolbar', 'show-tools', 'show-tool-toggle','suppress-drilldown']);
         }
 
         render() {
@@ -476,13 +476,16 @@
             const showToolbar = this.getAttribute('show-toolbar') || '';
             const showTools = this.getAttribute('show-tools') || '';
             const showToolToggle = this.getAttribute('show-tool-toggle') || '';
-                  const { render } = this.getCommonAttributes();
+            const suppressDrilldown = this.getAttribute('suppress-drilldown') || '';
+            
+            const { render } = this.getCommonAttributes();
 
             const url = this.createUrl("/aichart");
             if (readOnly.length > 0) url.searchParams.append('ReadOnly', readOnly);
             if (showToolbar.length > 0) url.searchParams.append('ShowToolbar', showToolbar);
             if (showTools.length > 0) url.searchParams.append('ShowTools', showTools);
             if (showToolToggle.length > 0) url.searchParams.append('ShowToolToggle', showToolToggle);
+            if (suppressDrilldown.length > 0) url.searchParams.append('SuppressDrilldown', suppressDrilldown);
 
             if (render) this.renderIframe(url, "inmydata AI Chart");
         }

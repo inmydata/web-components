@@ -9,7 +9,7 @@ Our components are simple HTML elements, based on the universally supported [Web
  - `<inmydata-vis/>` (To embed a saved visualisation, or the visualisation builder, or show a Copilot chart)
  - `<inmydata-dashboard/>` (To embed a dashboard)
  - `<inmydata-insights/>` (To show a list of Insights)
- - `<inmydata-aichart/>` (To show a chart produced by an AI conversation, e.g. LiveKit)
+ - `<inmydata-aichart/>` (To show a chart produced by an Agentic AI conversation)
 
 ## Getting Started
 To use our components in your web application, add one line to your html:

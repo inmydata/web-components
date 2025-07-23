@@ -4,7 +4,9 @@
   "description": "InMyData Web Components",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+     "rollup": "rollup -c rollup.config.mjs",
+    "minify": "terser dist/inmydata-components-all.js -o dist/inmydata-components-all.min.js"
   },
   "devDependencies": {
     "jest": "^29.6.1",

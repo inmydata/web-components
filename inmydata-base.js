@@ -63,7 +63,8 @@ export default class InmydataBase extends HTMLElement {
             render: renderAttribute ? render : true,
             suppressDrilldown: this.getAttribute('suppress-drilldown')|| false,
             demo: this.getAttribute('demo') || false,
-            showLogin: this.getAttribute('show-login') === "false" ? false : true
+            showLogin: this.getAttribute('show-login') === "false" ? false : true,
+            modalDialog: this.getAttribute('modal-dialog') === "true" ? true : false
         };
     }
 
@@ -120,9 +121,11 @@ export default class InmydataBase extends HTMLElement {
      * @param {string} title - The title for the iframe.
      */
     renderIframe(url, title) {
-        const { width, height } = this.getCommonAttributes();
+        const { width, height, modalDialog } = this.getCommonAttributes();
 
-
+        const dialogOpen = modalDialog ? `<dialog>` : '';
+        const dialogClose = modalDialog ? `</dialog>` : '';
+        const closeButton = modalDialog ? `<span role="button" aria-label="Close dialog" class="close-button">X</span>` : '';
 
         this.shadowRoot.innerHTML = `
             <style>
@@ -136,13 +139,48 @@ export default class InmydataBase extends HTMLElement {
                     margin: 0;
                     padding: 0;
                 }
+                dialog {
+                    width: 90%;
+                    height: 90%;
+                    padding:10px;
+                    overflow: hidden;
+                }
+                .close-button {
+                    float: right;
+                    cursor: pointer;
+                }
             </style>
+            ${dialogOpen}
+            ${closeButton}
             <iframe
                 src="${url.toString()}"
                 title="${title}"
                 allow="microphone"
             ></iframe>
+            ${dialogClose}
         `;
+
+        if (modalDialog) {
+            this.dialog = this.shadowRoot.querySelector('dialog');
+
+            //add an event listener to close the dialog when the escape key is pressed
+            const closeOnEscape = (event) => {
+                    if (event.key === 'Escape' || event.code === 'Escape') {
+                        this.dialog.close();
+                        this.emit('inmydata.dialog.close');
+                    }
+                };
+
+            //add an event listener to close the dialog when the escape key is pressed
+            window.addEventListener('keydown', closeOnEscape);
+
+            this.shadowRoot.querySelector('.close-button').addEventListener('click', (e) => {
+                 this.dialog.close();
+                 this.emit('inmydata.dialog.close');
+            });
+
+            this.dialog.close();    
+                    }
     }
 
     /**
@@ -169,7 +207,7 @@ export default class InmydataBase extends HTMLElement {
         
         // Validate the origin of the message
         if (event.origin.indexOf(`https://${tenant}.${domain}`) !== 0) {
-            this.error("INVALID ORIGIN: " + event.origin);
+            //this.error("INVALID ORIGIN: " + event.origin);
             return;
         }
 
@@ -324,6 +362,14 @@ export default class InmydataBase extends HTMLElement {
 
     removePlaceholder(){
         this.shadowRoot.innerHTML = ``;
+    }
+
+    openModal(){
+        this.dialog?.showModal();
+    }
+
+    closeModal(){
+        this.dialog?.close();
     }
 
     dispose() {

@@ -147,9 +147,12 @@
                     height: 90%;
                     padding:10px;
                     overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
                 }
                 .close-button {
-                    float: right;
+                    display: flex;
+                    flex-direction: row-reverse;
                     cursor: pointer;
                 }
             </style>
@@ -170,6 +173,7 @@
                 const closeOnEscape = (event) => {
                         if (event.key === 'Escape' || event.code === 'Escape') {
                             this.dialog.close();
+                            this.emit('inmydata.dialog.close');
                         }
                     };
 

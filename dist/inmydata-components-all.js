@@ -420,10 +420,10 @@
             const id = this.getAttribute('vis-id') || '';
             const copilotSequence = this.getAttribute('copilot-sequence') || '';
             const copilotSession = this.getAttribute('copilot-session') || '';
-            const readOnly = this.getAttribute('read-only') || '';
-            const showToolbar = this.getAttribute('show-toolbar') || '';
-            const showTools = this.getAttribute('show-tools') || '';
-            const showToolToggle = this.getAttribute('show-tool-toggle') || '';
+            const readOnly = this.getAttribute('read-only') || false;
+            const showToolbar = this.getAttribute('show-toolbar') || true;
+            const showTools = this.getAttribute('show-tools') || true;
+            const showToolToggle = this.getAttribute('show-tool-toggle') || true;
             const subject = this.getAttribute('subject') || '';
             const insightId = this.getAttribute('insight-id') || '';
             const insightSignature = this.getAttribute('insight-signature') || '';

@@ -5,21 +5,36 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-     "rollup": "rollup -c rollup.config.mjs",
+    "rollup": "rollup -c rollup.config.mjs",
     "minify": "terser dist/inmydata-components-all.js -o dist/inmydata-components-all.min.js"
   },
   "devDependencies": {
     "jest": "^29.6.1",
-    "jest-environment-jsdom": "^29.6.1"
+    "jest-environment-jsdom": "^29.6.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "terser": "^5.43.1"
   },
   "jest": {
     "testEnvironment": "jsdom",
     "transform": {},
-    "testMatch": ["**/tests/**/*.test.js"],
-    "moduleFileExtensions": ["js"],
-    "setupFilesAfterEnv": ["./tests/jest.setup.js"],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "setupFilesAfterEnv": [
+      "./tests/jest.setup.js"
+    ],
     "testEnvironmentOptions": {
-      "customExportConditions": ["node", "node-addons"]
+      "customExportConditions": [
+        "node",
+        "node-addons"
+      ]
     }
+  },
+  "dependencies": {
+    "rollup": "^4.49.0"
   }
 }
